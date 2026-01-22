@@ -60,10 +60,30 @@ class BST{
             }
         }
     }
+
+    //include method
+    includes(value){
+        if(!this.root){
+            return false;
+        }
+        let temp = this.root;
+        while(temp){
+            if(value < temp.value){
+                temp = temp.left;
+            }else if(value > temp.value){
+                temp = temp.right;
+            }else if(value === temp.value){
+                return true;
+            }
+        }
+        return false;
+    }
 }
 
 const tree = new BST();
 tree.insert(5);
 tree.insert(3);
 tree.insert(8);
-console.log(tree);
+console.log(tree.includes(1))
+console.log(tree.includes(5))
+// console.log(tree);
