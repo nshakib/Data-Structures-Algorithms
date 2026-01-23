@@ -61,6 +61,41 @@ class BST{
         }
     }
 
+    //BFS
+    bfs(){
+       let current = this.root;
+       let queue = [];
+       let data = [];
+
+       queue.push(current);
+
+       while(queue.length ){
+        current = queue.shift();
+        data.push(current.value);
+
+        if(current.left){
+            queue.push(current.left);
+        }
+        if(current.right){
+            queue.push(current.right);
+        }
+       }
+       return data;
+
+    }
+
+    //DFS
+    dfsPreOrder(node = this.root, data= []){
+        if(node === null) return data;
+        console.log("........", data);
+        data.push(node.value);
+
+        if(node.left) this.dfsPreOrder(node.left, data);
+        if(node.right) this.dfsPreOrder(node.right, data);
+
+        return data;
+    }
+
     //include method
     includes(value){
         if(!this.root){
@@ -82,8 +117,12 @@ class BST{
 
 const tree = new BST();
 tree.insert(5);
-tree.insert(3);
 tree.insert(8);
-console.log(tree.includes(1))
-console.log(tree.includes(5))
-// console.log(tree);
+tree.insert(3);
+tree.insert(1);
+tree.insert(7);
+tree.insert(9);
+// console.log(tree.includes(1))
+// console.log(tree.includes(5))
+// console.log(tree.bfs());
+console.log(tree.dfsPreOrder());
